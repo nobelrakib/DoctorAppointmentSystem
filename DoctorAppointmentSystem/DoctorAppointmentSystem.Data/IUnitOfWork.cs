@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HospitalManagement.Data
+namespace DoctorAppointmentSystem.Data
 {
     public interface IUnitOfWork<T> : IDisposable where T : DbContext
     {

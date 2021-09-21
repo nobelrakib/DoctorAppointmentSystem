@@ -1,11 +1,11 @@
-﻿using HospitalManagement.Core.Entities;
-using HospitalManagement.Core.UnitOfWork;
+﻿using DoctorAppointmentSystem.Core.Entities;
+using DoctorAppointmentSystem.Core.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HospitalManagement.Core.Service
+namespace DoctorAppointmentSystem.Core.Service
 {
     public class DoctorService : IDoctorService
     {

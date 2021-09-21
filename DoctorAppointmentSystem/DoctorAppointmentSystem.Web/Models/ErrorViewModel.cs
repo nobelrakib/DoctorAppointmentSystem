@@ -1,6 +1,6 @@
 using System;
 
-namespace MySqlProject.Models
+namespace DoctorAppointmentSystem.Web.Models
 {
     public class ErrorViewModel
     {

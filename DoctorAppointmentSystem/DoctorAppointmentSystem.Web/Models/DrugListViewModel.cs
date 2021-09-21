@@ -1,10 +1,10 @@
-﻿using HospitalManagement.Core.Entities;
+﻿using DoctorAppointmentSystem.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MySqlProject.Models
+namespace DoctorAppointmentSystem.Web.Models
 {
     public class DrugListViewModel
     {

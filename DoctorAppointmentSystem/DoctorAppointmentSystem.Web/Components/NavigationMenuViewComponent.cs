@@ -1,12 +1,12 @@
-﻿using HospitalManagement.Core.Contexts;
-using HospitalManagement.Core.Repositories;
+﻿using DoctorAppointmentSystem.Core.Contexts;
+using DoctorAppointmentSystem.Core.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MySqlProject.Components
+namespace DoctorAppointmentSystem.Web.Components
 {
     public class NavigationMenuViewComponent : ViewComponent
     {

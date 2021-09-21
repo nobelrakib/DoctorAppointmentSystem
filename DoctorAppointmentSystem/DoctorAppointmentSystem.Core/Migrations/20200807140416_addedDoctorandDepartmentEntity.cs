@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace HospitalManagement.Core.Migrations
+namespace DoctorAppointmentSystem.Core.Migrations
 {
     public partial class addedDoctorandDepartmentEntity : Migration
     {

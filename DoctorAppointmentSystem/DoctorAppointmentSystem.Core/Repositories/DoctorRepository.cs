@@ -1,12 +1,12 @@
-﻿using HospitalManagement.Core.Contexts;
-using HospitalManagement.Core.Entities;
-using HospitalManagement.Data;
+﻿using DoctorAppointmentSystem.Core.Contexts;
+using DoctorAppointmentSystem.Core.Entities;
+using DoctorAppointmentSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HospitalManagement.Core.Repositories
+namespace DoctorAppointmentSystem.Core.Repositories
 {
     public class DoctorRepository : Repository<Doctor>,IDoctorRepository
     {

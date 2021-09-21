@@ -1,15 +1,15 @@
 ﻿using Autofac;
-using HospitalManagement.Core.Service;
-using HospitalManagement.Core.UnitOfWork;
+using DoctorAppointmentSystem.Core.Service;
+using DoctorAppointmentSystem.Core.UnitOfWork;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using MySqlProject.Models;
+using DoctorAppointmentSystem.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MySqlProject.Areas.Admin.Models
+namespace DoctorAppointmentSystem.Web.Areas.Admin.Models
 {
     public class DoctorViewModel
     {

@@ -113,3 +113,4 @@ Backup*/
 UpgradeLog*.XML
 
 
+/DoctorAppointmentSystem/.vs/DoctorAppointmentSystem/config/applicationhost.config

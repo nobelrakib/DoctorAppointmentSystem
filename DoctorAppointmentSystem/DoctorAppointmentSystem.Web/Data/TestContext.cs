@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MySqlProject.Models;
+using DoctorAppointmentSystem.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MySqlProject.Data.Migrations
+namespace DoctorAppointmentSystem.Web.Data.Migrations
 {
     public class TestContext : DbContext
     {

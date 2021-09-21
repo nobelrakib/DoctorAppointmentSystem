@@ -1,6 +1,6 @@
-﻿using HospitalManagement.Core.Contexts;
-using HospitalManagement.Core.Entities;
-using HospitalManagement.Core.Service;
+﻿using DoctorAppointmentSystem.Core.Contexts;
+using DoctorAppointmentSystem.Core.Entities;
+using DoctorAppointmentSystem.Core.Service;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MySqlProject.Models
+namespace DoctorAppointmentSystem.Web.Models
 {
     public class SeedData
     {

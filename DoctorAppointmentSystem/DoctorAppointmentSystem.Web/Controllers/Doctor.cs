@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HospitalManagement.Core.Contexts;
-using HospitalManagement.Core.Repositories;
+using DoctorAppointmentSystem.Core.Contexts;
+using DoctorAppointmentSystem.Core.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using MySqlProject.Models;
+using DoctorAppointmentSystem.Web.Models;
 
-namespace MySqlProject.Controllers
+namespace DoctorAppointmentSystem.Web.Controllers
 {
     public class Doctor : Controller
     {

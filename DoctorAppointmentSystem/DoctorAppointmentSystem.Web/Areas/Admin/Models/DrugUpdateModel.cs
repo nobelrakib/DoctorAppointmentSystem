@@ -1,13 +1,13 @@
 ﻿using Autofac;
-using HospitalManagement.Core.Entities;
-using HospitalManagement.Core.Service;
+using DoctorAppointmentSystem.Core.Entities;
+using DoctorAppointmentSystem.Core.Service;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MySqlProject.Areas.Admin.Models
+namespace DoctorAppointmentSystem.Web.Areas.Admin.Models
 {
     public class DrugUpdateModel : BaseModel
     {

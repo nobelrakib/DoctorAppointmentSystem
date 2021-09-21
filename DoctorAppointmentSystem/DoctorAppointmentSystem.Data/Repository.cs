@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace HospitalManagement.Data
+namespace DoctorAppointmentSystem.Data
 {
     public abstract class Repository<T> : IRepository<T> where T : class
     {

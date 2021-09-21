@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
 
-namespace HospitalManagement.Core.Service
+namespace DoctorAppointmentSystem.Core.Service
 {
     public class FileService
     {

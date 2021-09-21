@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>aspnet-MySqlProject-D038D28B-8737-421F-AA19-1ADF06383DD5</UserSecretsId>
+    <UserSecretsId>aspnet-DoctorAppointmentSystem.Web-D038D28B-8737-421F-AA19-1ADF06383DD5</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

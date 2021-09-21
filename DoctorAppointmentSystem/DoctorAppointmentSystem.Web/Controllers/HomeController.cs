@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using MySqlProject.Areas.Admin.Models;
-using MySqlProject.Models;
+using DoctorAppointmentSystem.Web.Areas.Admin.Models;
+using DoctorAppointmentSystem.Web.Models;
 
-namespace MySqlProject.Controllers
+namespace DoctorAppointmentSystem.Web.Controllers
 {
     public class HomeController : Controller
     {

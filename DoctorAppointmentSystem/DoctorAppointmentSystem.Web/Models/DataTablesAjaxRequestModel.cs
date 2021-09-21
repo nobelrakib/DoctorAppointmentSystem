@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MySqlProject.Models
+namespace DoctorAppointmentSystem.Web.Models
 {
     public class DataTablesAjaxRequestModel
     {

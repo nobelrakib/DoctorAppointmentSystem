@@ -1,13 +1,13 @@
 ﻿using Autofac;
-using HospitalManagement.Core.Contexts;
-using HospitalManagement.Core.Repositories;
-using HospitalManagement.Core.Service;
-using HospitalManagement.Core.UnitOfWork;
+using DoctorAppointmentSystem.Core.Contexts;
+using DoctorAppointmentSystem.Core.Repositories;
+using DoctorAppointmentSystem.Core.Service;
+using DoctorAppointmentSystem.Core.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HospitalManagement.Core
+namespace DoctorAppointmentSystem.Core
 {
     public class HospitalModule : Module
     {

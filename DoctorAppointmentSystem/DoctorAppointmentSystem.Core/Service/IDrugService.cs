@@ -1,9 +1,9 @@
-﻿using HospitalManagement.Core.Entities;
+﻿using DoctorAppointmentSystem.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HospitalManagement.Core.Service
+namespace DoctorAppointmentSystem.Core.Service
 {
     public interface IDrugService
     {

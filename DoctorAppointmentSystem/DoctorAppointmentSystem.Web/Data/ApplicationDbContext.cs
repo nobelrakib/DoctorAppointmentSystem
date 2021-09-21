@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using MySqlProject.Models;
+using DoctorAppointmentSystem.Web.Models;
 
-namespace MySqlProject.Data
+namespace DoctorAppointmentSystem.Web.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

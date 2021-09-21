@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace HospitalManagement.Data
+namespace DoctorAppointmentSystem.Data
 {
     public class UnitOfWork<T> : IUnitOfWork<T> where T : DbContext
     {

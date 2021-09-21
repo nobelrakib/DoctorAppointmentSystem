@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HospitalManagement.Core.Entities
+namespace DoctorAppointmentSystem.Core.Entities
 {
     public class Department
     {

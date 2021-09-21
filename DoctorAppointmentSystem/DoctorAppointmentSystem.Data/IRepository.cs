@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace HospitalManagement.Data
+namespace DoctorAppointmentSystem.Data
 {
     public interface IRepository<T> where T : class
     {

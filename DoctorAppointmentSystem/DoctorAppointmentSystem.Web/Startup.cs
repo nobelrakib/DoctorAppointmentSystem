@@ -8,22 +8,22 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
-using MySqlProject.Data;
+using DoctorAppointmentSystem.Web.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MySqlProject.Data.Migrations;
-using MySqlProject.Models;
-using HospitalManagement.Core.Contexts;
-using HospitalManagement.Core.Service;
-using HospitalManagement.Core.Repositories;
-using HospitalManagement.Core.UnitOfWork;
-using HospitalManagement.Data;
+using DoctorAppointmentSystem.Web.Data.Migrations;
+using DoctorAppointmentSystem.Web.Models;
+using DoctorAppointmentSystem.Core.Contexts;
+using DoctorAppointmentSystem.Core.Service;
+using DoctorAppointmentSystem.Core.Repositories;
+using DoctorAppointmentSystem.Core.UnitOfWork;
+using DoctorAppointmentSystem.Data;
 using Autofac;
-using HospitalManagement.Core;
+using DoctorAppointmentSystem.Core;
 using Autofac.Extensions.DependencyInjection;
 
-namespace MySqlProject
+namespace DoctorAppointmentSystem.Web
 {
     public class Startup
     {
