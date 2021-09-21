@@ -1,0 +1,18 @@
+﻿@model IEnumerable<string>
+
+<a class="btn btn-block btn-outline-secondary" asp-action="Index"
+   asp-controller="Doctor" asp-route-department="">
+    Home
+</a>
+
+@foreach (string department in Model)
+{
+    <a class="btn btn-block
+       @(department == ViewBag.SelectedDepartment
+           ? "btn-primary": "btn-outline-secondary")"
+       asp-action="Index" asp-controller="doctor"
+       asp-route-department="@department"
+       asp-route-pageNumber="1">
+        @department
+    </a>
+}

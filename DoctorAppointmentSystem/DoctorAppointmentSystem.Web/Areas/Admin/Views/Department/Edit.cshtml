@@ -1,0 +1,44 @@
+﻿@model MySqlProject.Areas.Admin.Models.DepartmentUpdateModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@section notification
+{
+    @await Html.PartialAsync("_Notification", Model.Notification)
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- left column -->
+        <div class="col-md-6">
+            <!-- general form elements -->
+            <div class="card card-info">
+                <div class="card-header">
+                    <h3 class="card-title">Edit Department</h3>
+                </div>
+                <!-- /.card-header -->
+                <form role="form" id="myform" action="~/Admin/Department/Edit" method="post">
+                    @Html.AntiForgeryToken()
+                    <input hidden name="Id" value="@Model.Id" />
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label">Name </label>
+                            <input type="text" class="form-control" name="Name" value=@Model.Name placeholder="Enter Department Name.....">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Description">Description </label>
+                            <textarea class="form-control" rows="5" cols="33" name="Description" @*value="@Model.Description"*@ placeholder="Enter Description Name.....">@Model.Description</textarea>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

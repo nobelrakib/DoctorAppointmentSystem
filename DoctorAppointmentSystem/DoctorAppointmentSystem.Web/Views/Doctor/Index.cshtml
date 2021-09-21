@@ -1,0 +1,65 @@
+﻿@model MySqlProject.Models.DoctorListModel
+@addTagHelper *, MySqlProject
+@{
+    ViewData["Title"] = "Index";
+}
+@{
+    Layout = "SecondLayout";
+}
+@section styles
+ {
+
+    <style>
+        img {
+            width: 200px; /* You can set the dimensions to whatever you want */
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .responsive {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+}
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('.searchbox-input').on("keyup", function () {
+                // var value = $(this).val().toLowerCase();
+                var value = $('.searchbox-input').val().toLowerCase();
+                $(".card").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+
+    </script>
+
+}
+
+<input class="searchbox-input m-3" placeholder="search By Name" style="width: 900px;" />
+
+<div class="row">
+    @foreach (var doctor in Model.Doctors)
+    {
+        //<div class="row">
+        <div class="card col-3 m-3">
+            <img class="responsive" src=/FrontEnd/images/@doctor.ImageName alt="Card image cap">
+            <h5 class="card-title">@doctor.Name</h5>
+            <div class="card-body">
+                <p class="card-text">@doctor.Description</p>
+            </div>
+
+        </div>
+
+    }
+</div>
+
+
+
+<div page-model="@Model.PagingInfo" page-action="Index" page-classes-enabled="true"
+     page-class="btn" page-class-normal="btn-outline-dark" 
+     page-class-selected="btn-primary" page-url-department="@Model.CurrentDepartment" class="btn-group pull-right m-1">
+</div>
+
