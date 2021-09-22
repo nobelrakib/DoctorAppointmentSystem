@@ -57,6 +57,11 @@ namespace DoctorAppointmentSystem.Core
             builder.RegisterType<DrugService>().As<IDrugService>()
                .InstancePerLifetimeScope();
 
+            builder.RegisterType<AppointmentRepository>().As<IAppointmentRepository>()
+                .InstancePerLifetimeScope();
+            builder.RegisterType<AppointmentService>().As<IAppointmentService>()
+               .InstancePerLifetimeScope();
+
 
             base.Load(builder);
         }

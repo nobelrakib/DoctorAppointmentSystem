@@ -12,5 +12,6 @@ namespace DoctorAppointmentSystem.Core.UnitOfWork
        IDoctorRepository DoctorRepository { get; set; }
        IDepartmentRepository DepartmentRepository { get; set; }
        IDrugRepository DrugRepository { get; set; }
+       IAppointmentRepository AppointmentRepository { get; set; }
     }
 }
