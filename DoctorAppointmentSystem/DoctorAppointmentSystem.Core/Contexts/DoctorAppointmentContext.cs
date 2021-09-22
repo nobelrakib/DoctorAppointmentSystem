@@ -7,18 +7,18 @@ using System.Text;
 
 namespace DoctorAppointmentSystem.Core.Contexts
 {
-    public class HospitalContext : IdentityDbContext,IHospitalContext
+    public class DoctorAppointmentContext : IdentityDbContext,IDoctorAppointmentContext
     {
         private string _connectionString;
         private string _migrationAssemblyName;
 
-        public HospitalContext(string connectionString, string migrationAssemblyName)
+        public DoctorAppointmentContext(string connectionString, string migrationAssemblyName)
         {
             _connectionString = connectionString;
             _migrationAssemblyName = migrationAssemblyName;
         }
 
-        public HospitalContext(DbContextOptions<HospitalContext> options)
+        public DoctorAppointmentContext(DbContextOptions<DoctorAppointmentContext> options)
            : base(options)
 
         {

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DoctorAppointmentSystem.Core.Contexts
 {
-    public interface IHospitalContext
+    public interface IDoctorAppointmentContext
     {
          DbSet<Doctor> Doctors { get; set; }
          DbSet<Department> Departments { get; set; }

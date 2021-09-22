@@ -8,16 +8,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using DoctorAppointmentSystem.Web.Areas.Admin.Models;
 using DoctorAppointmentSystem.Web.Models;
+using AspNetCoreHero.ToastNotification.Abstractions;
 
 namespace DoctorAppointmentSystem.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly INotyfService _notyf;
+        public HomeController(ILogger<HomeController> logger, INotyfService notyf)
         {
             _logger = logger;
+            _notyf = notyf;
         }
 
         public IActionResult Index()
@@ -36,8 +38,17 @@ namespace DoctorAppointmentSystem.Web.Controllers
         [HttpPost]
         public IActionResult AppointmentAdd(AppointmentUpdateModel model)
         {
-            model.Add();
-            model.InitiateDoctor();
+            try
+            {
+                model.Add();
+                model.InitiateDoctor();
+                _notyf.Success("Success Notification");
+            }
+            catch(Exception ex)
+            {
+                _notyf.Warning(ex.Message);
+            };
+           
             return View(model);
         }
 

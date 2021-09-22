@@ -9,10 +9,10 @@ namespace DoctorAppointmentSystem.Core.Service
 {
     public class DrugService : IDrugService
     {
-        private IHospitalUnitOfWork _hospitalUnitOfWork;
-        public DrugService(IHospitalUnitOfWork hospitalUnitOfWork)
+        private IDoctorAppointmentUnitOfWork _DoctorAppointmentUnitOfWork;
+        public DrugService(IDoctorAppointmentUnitOfWork DoctorAppointmentUnitOfWork)
         {
-            _hospitalUnitOfWork = hospitalUnitOfWork;
+            _DoctorAppointmentUnitOfWork = DoctorAppointmentUnitOfWork;
         }
         public void AddNewDrug(Drug drug)
         {
@@ -20,8 +20,8 @@ namespace DoctorAppointmentSystem.Core.Service
             {
                 if (drug == null || string.IsNullOrWhiteSpace(drug.Name))
                     throw new InvalidOperationException("drug name is missing");
-                _hospitalUnitOfWork.DrugRepository.Add(drug);
-                _hospitalUnitOfWork.Save();
+                _DoctorAppointmentUnitOfWork.DrugRepository.Add(drug);
+                _DoctorAppointmentUnitOfWork.Save();
             }
             catch (InvalidOperationException e)
             {
@@ -36,11 +36,11 @@ namespace DoctorAppointmentSystem.Core.Service
         {
             try
             {
-                var olddrug = _hospitalUnitOfWork.DrugRepository.GetById(drug.Id);
+                var olddrug = _DoctorAppointmentUnitOfWork.DrugRepository.GetById(drug.Id);
                 olddrug.Name = drug.Name;
                 olddrug.ImageName = drug.ImageName;
                 olddrug.Description = drug.Description;
-                _hospitalUnitOfWork.Save();
+                _DoctorAppointmentUnitOfWork.Save();
             }
             catch (Exception ex)
             {
@@ -51,9 +51,9 @@ namespace DoctorAppointmentSystem.Core.Service
         {
             try
             {
-                var drug = _hospitalUnitOfWork.DrugRepository.GetById(id);
-                _hospitalUnitOfWork.DrugRepository.Remove(drug);
-                _hospitalUnitOfWork.Save();
+                var drug = _DoctorAppointmentUnitOfWork.DrugRepository.GetById(id);
+                _DoctorAppointmentUnitOfWork.DrugRepository.Remove(drug);
+                _DoctorAppointmentUnitOfWork.Save();
             }
             catch (Exception ex)
             {
@@ -62,7 +62,7 @@ namespace DoctorAppointmentSystem.Core.Service
         }
         public Drug GetDrug(int id)
         {
-            return _hospitalUnitOfWork.DrugRepository.GetById(id);
+            return _DoctorAppointmentUnitOfWork.DrugRepository.GetById(id);
         }
         public IEnumerable<Drug> GetDrugs(
             int pageIndex,
@@ -71,7 +71,7 @@ namespace DoctorAppointmentSystem.Core.Service
             out int total,
             out int totalFiltered)
         {
-            return _hospitalUnitOfWork.DrugRepository.Get(
+            return _DoctorAppointmentUnitOfWork.DrugRepository.Get(
                 out total,
                 out totalFiltered,
                 x => x.Name.Contains(searchText),

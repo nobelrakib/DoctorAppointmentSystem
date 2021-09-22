@@ -10,8 +10,8 @@ namespace DoctorAppointmentSystem.Web.Components
 {
     public class NavigationMenuViewComponent : ViewComponent
     {
-        public HospitalContext context;
-        public NavigationMenuViewComponent(HospitalContext context)
+        public DoctorAppointmentContext context;
+        public NavigationMenuViewComponent(DoctorAppointmentContext context)
         {
             this.context = context;
         }

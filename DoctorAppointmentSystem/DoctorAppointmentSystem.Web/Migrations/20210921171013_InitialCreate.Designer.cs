@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DoctorAppointmentSystem.Migrations
 {
-    [DbContext(typeof(HospitalContext))]
+    [DbContext(typeof(DoctorAppointmentContext))]
     [Migration("20210921171013_InitialCreate")]
     partial class InitialCreate
     {

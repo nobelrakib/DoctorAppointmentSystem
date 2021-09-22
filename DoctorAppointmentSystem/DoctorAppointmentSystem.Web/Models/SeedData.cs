@@ -15,8 +15,8 @@ namespace DoctorAppointmentSystem.Web.Models
     {
         public static void EnsurePopulated(IApplicationBuilder app)
         {
-            HospitalContext context = app.ApplicationServices
-                .CreateScope().ServiceProvider.GetRequiredService<HospitalContext>();
+            DoctorAppointmentContext context = app.ApplicationServices
+                .CreateScope().ServiceProvider.GetRequiredService<DoctorAppointmentContext>();
             var service = app.ApplicationServices.CreateScope().ServiceProvider.GetRequiredService<IDepartmentService>();
            
             context.Doctors.AddRange(

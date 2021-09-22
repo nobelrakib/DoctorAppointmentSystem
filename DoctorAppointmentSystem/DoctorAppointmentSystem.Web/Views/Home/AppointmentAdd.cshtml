@@ -112,26 +112,26 @@
                 <div class="right-agileinfo same">
                     <div class="gaps">
                         <p>Select Date</p>
-                        <input id="datepicker1" name="Date" type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
+                        <input id="datepicker1" name="Date" type="date" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'mm/dd/yyyy';}" required="">
                     </div>
                     <div class="gaps">
                         <p>Doctors</p>
                         @*<select class="option">
-            <option></option>
-            <option>Cardiology</option>
-            <option>Ophthalmology</option>
-            <option>Neurology</option>
-            <option>Psychology</option>
-            <option>Dermatology</option>
-        </select>*@
-                        <select  name="DoctorId">
+                                <option></option>
+                                <option>Cardiology</option>
+                                <option>Ophthalmology</option>
+                                <option>Neurology</option>
+                                <option>Psychology</option>
+                                <option>Dermatology</option>
+                            </select>*@
+                        <select class="option" name="DoctorId">
                             <option value="">Please Select doctor</option>
                             @foreach (var doctor in Model.Doctors)
                             {
-                                
-                                <option value="@doctor.Id" >@doctor.Name</option>
-                                
-                                
+
+                                <option value="@doctor.Id">@doctor.Name</option>
+
+
                             }
                         </select>
                     </div>
@@ -144,15 +144,16 @@
                         </select>
                     </div>
                     <div class="gaps">
-                        <input type="submit" style="background-color:aqua;" value="Make an Appointment">
+                        <input type="submit" style="background-color: #FF0000;" value="Make an Appointment">
                     </div>
                 </div>
                 <div class="clearfix"></div>
-                <input type="submit" style="background-color:aqua;" value="Make an Appointment">
+                <input type="submit" style="background-color: #FF0000;" value="Make an Appointment">
             </form>
         </div>
     </div>
 
 </div>
-	
+
 <!-- icons -->
+>

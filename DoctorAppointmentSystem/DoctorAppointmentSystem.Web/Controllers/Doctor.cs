@@ -11,18 +11,18 @@ namespace DoctorAppointmentSystem.Web.Controllers
 {
     public class Doctor : Controller
     {
-        public HospitalContext hospitalContext;
+        public DoctorAppointmentContext DoctorAppointmentContext;
         public int pageSize = 3;
-        public Doctor(HospitalContext hospitalContext)
+        public Doctor(DoctorAppointmentContext DoctorAppointmentContext)
         {
-            this.hospitalContext = hospitalContext;
+            this.DoctorAppointmentContext = DoctorAppointmentContext;
         }
         public IActionResult Index(string department, int pageNumber = 1)
         {
             string page = HttpContext.Request.Query["department"];
             return View(new DoctorListModel
             {
-                Doctors = hospitalContext.Doctors
+                Doctors = DoctorAppointmentContext.Doctors
                   .Where(p => department == null || p.Department.Name == department)
                     .OrderBy(d => d.Id)
                     .Skip((pageNumber - 1) * pageSize)
@@ -32,8 +32,8 @@ namespace DoctorAppointmentSystem.Web.Controllers
                     CurrentPage = pageNumber,
                     ItemsPerPage = pageSize,
                     TotalItems = department == null ?
-                         hospitalContext.Doctors.Count() :
-                         hospitalContext.Doctors.Where(e =>
+                         DoctorAppointmentContext.Doctors.Count() :
+                         DoctorAppointmentContext.Doctors.Where(e =>
                              e.Department.Name == department).Count()
                 },
                 CurrentDepartment=department

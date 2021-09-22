@@ -9,12 +9,12 @@ using System.Text;
 
 namespace DoctorAppointmentSystem.Core
 {
-    public class HospitalModule : Module
+    public class DoctorAppointmentModule : Module
     {
         private readonly string _connectionString;
         private readonly string _migrationAssemblyName;
 
-        public HospitalModule(string connectionStringName, string migrationAssemblyName)
+        public DoctorAppointmentModule(string connectionStringName, string migrationAssemblyName)
         {
 
             _connectionString = connectionStringName;
@@ -23,7 +23,7 @@ namespace DoctorAppointmentSystem.Core
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<HospitalContext>()
+            builder.RegisterType<DoctorAppointmentContext>()
                    .WithParameter("connectionString", _connectionString)
                    .WithParameter("migrationAssemblyName", _migrationAssemblyName)
                    .InstancePerLifetimeScope();
@@ -33,7 +33,7 @@ namespace DoctorAppointmentSystem.Core
             //       .WithParameter("migrationAssemblyName", _migrationAssemblyName)
             //       .InstancePerLifetimeScope();
 
-            builder.RegisterType<HospitalUnitOfWork>().As<IHospitalUnitOfWork>()
+            builder.RegisterType<DoctorAppointmentUnitOfWork>().As<IDoctorAppointmentUnitOfWork>()
                    .WithParameter("connectionString", _connectionString)
                    .WithParameter("migrationAssemblyName", _migrationAssemblyName)
                    .InstancePerLifetimeScope();

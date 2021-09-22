@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DoctorAppointmentSystem.Core.Migrations
 {
-    [DbContext(typeof(HospitalContext))]
+    [DbContext(typeof(DoctorAppointmentContext))]
     [Migration("20200807140416_addedDoctorandDepartmentEntity")]
     partial class addedDoctorandDepartmentEntity
     {

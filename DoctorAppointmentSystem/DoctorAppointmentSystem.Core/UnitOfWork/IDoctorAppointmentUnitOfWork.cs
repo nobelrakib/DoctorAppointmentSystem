@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DoctorAppointmentSystem.Core.UnitOfWork
 {
-    public interface IHospitalUnitOfWork : IUnitOfWork<HospitalContext>
+    public interface IDoctorAppointmentUnitOfWork : IUnitOfWork<DoctorAppointmentContext>
     {
        IDoctorRepository DoctorRepository { get; set; }
        IDepartmentRepository DepartmentRepository { get; set; }

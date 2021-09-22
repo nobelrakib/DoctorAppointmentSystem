@@ -51,7 +51,7 @@
         </nav>
     </header>
     @RenderBody()
-    
+
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2020 - DoctorAppointmentSystem.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -62,8 +62,6 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="/FrontEnd/js/jquery-2.2.3.min.js"></script>
     <script src="/FrontEnd/js/JiSlider.js"></script>
-
-
 
     <script>
         $(window).load(function () {
@@ -177,18 +175,27 @@
             imgHeight: 768
         })
     </script>
+    <!-- calender-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker1").datepicker();
+        });
+    </script>
 
     <script src="/FrontEnd/js/bootstrap.js"></script>
     <!-- //for bootstrap working -->
     <!-- here stars scrolling icon -->
     <script type="text/javascript">
         $(document).ready(function () {
-            
+
 
             $().UItoTop({ easingType: 'easeOutQuart' });
 
         });
     </script>
+    @await Component.InvokeAsync("Notyf")
     @RenderSection("Scripts", required: false)
 </body>
 </html>

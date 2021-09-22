@@ -20,10 +20,10 @@ namespace DoctorAppointmentSystem.Web.Models
         public int DoctorId { get; set; }
         public Gender Gender { get; set; }
         public DateTime Date { get; set; }
-        public HospitalContext context;
+        public DoctorAppointmentContext context;
         public AppointmentUpdateModel()
         {
-            context= Startup.AutofacContainer.Resolve<HospitalContext>();
+            context= Startup.AutofacContainer.Resolve<DoctorAppointmentContext>();
         }
         public void Add()
         {

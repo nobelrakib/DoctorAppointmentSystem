@@ -22,6 +22,7 @@ using DoctorAppointmentSystem.Data;
 using Autofac;
 using DoctorAppointmentSystem.Core;
 using Autofac.Extensions.DependencyInjection;
+using AspNetCoreHero.ToastNotification;
 
 namespace DoctorAppointmentSystem.Web
 {
@@ -41,7 +42,7 @@ namespace DoctorAppointmentSystem.Web
             var connectionStringName = "DefaultConnection";
             var connectionString = Configuration.GetConnectionString(connectionStringName);
             var migrationAssemblyName = typeof(Startup).Assembly.FullName;
-            builder.RegisterModule(new HospitalModule(connectionString, migrationAssemblyName));
+            builder.RegisterModule(new DoctorAppointmentModule(connectionString, migrationAssemblyName));
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -51,10 +52,11 @@ namespace DoctorAppointmentSystem.Web
             var connectionString = Configuration.GetConnectionString(connectionStringName);
             var migrationAssemblyName = typeof(Startup).Assembly.FullName;
 
-            services.AddDbContext<HospitalContext>(options =>
+            services.AddDbContext<DoctorAppointmentContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString(connectionStringName), b => b.MigrationsAssembly(migrationAssemblyName)));
 
-            //services.AddDbContext<HospitalContext>(options =>
+            services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
+            //services.AddDbContext<DoctorAppointmentContext>(options =>
             //   options.UseMySql(
             //       Configuration.GetConnectionString("DefaultConnection")));
 
@@ -62,18 +64,18 @@ namespace DoctorAppointmentSystem.Web
             //services.AddDbContext<ApplicationDbContext>(options =>
             //   options.UseMySql(
             //       Configuration.GetConnectionString("DefaultConnection")));
-          
+
             services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                .AddDefaultUI()
-               .AddEntityFrameworkStores<HospitalContext>()
+               .AddEntityFrameworkStores<DoctorAppointmentContext>()
                .AddDefaultTokenProviders();
 
-            //services.AddScoped<DbContext, HospitalContext>();
+            //services.AddScoped<DbContext, DoctorAppointmentContext>();
             //services.AddScoped<IDoctorService, DoctorService>();
             //services.AddScoped<IDepartmentService, DepartmentService>();
             //services.AddScoped<IDoctorRepository, DoctorRepository>();
             //services.AddScoped<IDepartmentRepository, DepartmentRepository>();
-            //services.AddScoped<IHospitalUnitOfWork, HospitalUnitOfWork>();
+            //services.AddScoped<IDoctorAppointmentUnitOfWork, DoctorAppointmentUnitOfWork>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

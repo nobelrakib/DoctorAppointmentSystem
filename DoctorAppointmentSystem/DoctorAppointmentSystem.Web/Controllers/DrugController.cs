@@ -10,16 +10,16 @@ namespace DoctorAppointmentSystem.Web.Controllers
 {
     public class DrugController : Controller
     {
-        public HospitalContext hospitalContext;
-        public DrugController(HospitalContext hospitalContext)
+        public DoctorAppointmentContext DoctorAppointmentContext;
+        public DrugController(DoctorAppointmentContext DoctorAppointmentContext)
         {
-            this.hospitalContext = hospitalContext;
+            this.DoctorAppointmentContext = DoctorAppointmentContext;
         }
         public IActionResult Index()
         {
             return View(new DrugListViewModel
             {
-                Drugs = hospitalContext.Drugs.AsEnumerable()
+                Drugs = DoctorAppointmentContext.Drugs.AsEnumerable()
 
             }); 
         }
