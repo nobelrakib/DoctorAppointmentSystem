@@ -78,6 +78,7 @@ namespace DoctorAppointmentSystem.Web
             //services.AddScoped<IDoctorAppointmentUnitOfWork, DoctorAppointmentUnitOfWork>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -104,7 +105,11 @@ namespace DoctorAppointmentSystem.Web
 
             app.UseAuthentication();
             app.UseAuthorization();
-           // SeedData.EnsurePopulated(app);
+            // SeedData.EnsurePopulated(app);
+            //app.UseSignalR(routes =>
+            //{
+            //    routes.MapHub<Hubs.WebRTCHub>("/WebRTCHub");
+            //});
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute("a",
@@ -123,7 +128,7 @@ namespace DoctorAppointmentSystem.Web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+                endpoints.MapHub<Hubs.WebRTCHub>("/WebRTCHub");
                 endpoints.MapControllerRoute(
                    name: "areas",
                    pattern: "{area:exists}/{controller=Dashboard}/{action=Index}/{id?}");

@@ -26,6 +26,11 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Controllers
             return Json(data);
         }
 
+        public IActionResult Chamber()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
