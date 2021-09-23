@@ -353,7 +353,14 @@ function sendFile() {
 /****************************************************************************
 * Auxiliary functions
 ****************************************************************************/
-
+//document.querySelector('button#stop').addEventListener('click', async () => {
+//    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+//        .then(mediaStream => {
+//            const stream = mediaStream;
+//            const tracks = stream.getTracks();            
+//            tracks[0].stop;
+//        })
+//});
 function logError(err) {
     if (!err) return;
     if (typeof err === 'string') {

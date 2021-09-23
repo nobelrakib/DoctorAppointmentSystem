@@ -38,7 +38,7 @@
         <video id="localVideo" autoplay playsinline></video>
         <video id="remoteVideo" autoplay playsinline></video>
     </div>
-
+    <button id="stop" class="btn btn-danger">Stop camera</button>
     <h5>File sharing</h5>
     <div id="fileShare">
         <input type="file" id="fileInput">
@@ -56,6 +56,32 @@
 </div>
 
 @section scripts{
+   <script>
+       document.getElementById("stop").addEventListener("click", function () {
+           console.log(window.location.href)
+           var data = { "url": window.location.href };
+
+           $.ajax({
+
+               url: "/admin/Appointment/EmailSending",
+
+               data: data,
+
+               type: "POST",
+
+               dataType: 'JSON',
+               success: function (result) {
+                   alert('xyz');
+                   toastr.success('Click Button');
+               },
+               error: function (passParams) {
+                   console.log("Error is " + passParams);
+               }
+           });     
+
+       });
+       
+   </script>
     <script type="text/javascript" src="/admin/plugins/signalr/dist/browser/signalr.js"></script>
     <script type="text/javascript" src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
