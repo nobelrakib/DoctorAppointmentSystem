@@ -41,6 +41,7 @@ namespace DoctorAppointmentSystem.Core.Service
                 oldDoctor.ImageName = doctor.ImageName;
                 oldDoctor.DepartmentId = doctor.DepartmentId;
                 oldDoctor.Description = doctor.Description;
+                oldDoctor.UserId = doctor.UserId;
                 _DoctorAppointmentUnitOfWork.Save();
             }
             catch (Exception ex)

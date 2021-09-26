@@ -6,10 +6,12 @@ using DoctorAppointmentSystem.Core.Service;
 using Microsoft.AspNetCore.Mvc;
 using DoctorAppointmentSystem.Web.Areas.Admin.Models;
 using DoctorAppointmentSystem.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DoctorAppointmentSystem.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class DepartmentController : Controller
     {
         //  public IDepartmentService ds;

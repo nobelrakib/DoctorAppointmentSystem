@@ -69,7 +69,15 @@ namespace DoctorAppointmentSystem.Web.Controllers
 
                     _logger.LogInformation("User logged in.");
                     ViewBag.Message = "Success";
-                    return LocalRedirect(model.ReturnUrl);
+                    if(await _userManager.IsInRoleAsync(user, "Admin"))
+                    {
+                       return LocalRedirect("/Admin/dashboard");
+                    }
+                    else if(await _userManager.IsInRoleAsync(user, "Doctor"))
+                    {
+                        return LocalRedirect("/Admin/Appointment/index");
+                    }
+                    else return LocalRedirect(model.ReturnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {
@@ -230,6 +238,11 @@ namespace DoctorAppointmentSystem.Web.Controllers
 
         [HttpGet]
         public IActionResult ResetPasswordConfirmation()
+        {
+            return View();
+        }
+
+        public IActionResult AccessDenied()
         {
             return View();
         }

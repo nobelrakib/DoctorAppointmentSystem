@@ -13,6 +13,8 @@ namespace DoctorAppointmentSystem.Core.Entities
         public string ImageName { get; set; }
         public Department Department { get; set; }
         public int DepartmentId { get; set; }
+        public string UserId { get; set; }
+        public ExtendedIdentityUser AppUser { get; set; }
         public IList<Appointment> Appointments { get; set; }
     }
 }

@@ -8,5 +8,6 @@ namespace DoctorAppointmentSystem.Core.Entities
     public class ExtendedIdentityUser : IdentityUser
     {
         public string Name { get; set; }
+        public Doctor Doctor { get; set; }
     }
 }

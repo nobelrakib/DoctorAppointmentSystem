@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace DoctorAppointmentSystem.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = "Admin,Doctor,Patient")]
     public class AppointmentController : Controller
     {
         private readonly INotyfService _notyf;

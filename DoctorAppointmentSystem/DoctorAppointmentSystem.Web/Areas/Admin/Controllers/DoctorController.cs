@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DoctorAppointmentSystem.Web.Areas.Admin.Models;
 using DoctorAppointmentSystem.Web.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DoctorAppointmentSystem.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class DoctorController : Controller
     {
         public FileService fileService;
@@ -37,14 +39,16 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Controllers
         {
             var model = new DoctorUpdateModel();
             model.GetAllDepartment();
+            model.GetAllUsers();
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Add(DoctorUpdateModel model)
+        public async Task<IActionResult> Add(DoctorUpdateModel model)
         {
-            model.AddDoctor();
+            await model.AddDoctor();
             model.GetAllDepartment();
+            model.GetAllUsers();
             return View(model);
         }
 
@@ -52,6 +56,7 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Controllers
         {
             var model = new DoctorUpdateModel();
             model.GetAllDepartment();
+            model.GetAllUsers();
             model.Load(id);
             return View(model);
         }
@@ -61,6 +66,7 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Controllers
         {
             model.Edit();
             model.GetAllDepartment();
+            model.GetAllUsers();
             return View(model);
         }
         public IActionResult GetDoctors()
@@ -72,11 +78,11 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             var model = new DoctorViewModel();
-            model.Delete(id);
-            return LocalRedirect("/Admin/Department/Index");
+            await model.Delete(id);
+            return LocalRedirect("/Admin/Doctor/Index");
         }
     }
 }

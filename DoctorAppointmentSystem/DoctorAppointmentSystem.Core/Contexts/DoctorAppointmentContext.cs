@@ -53,6 +53,11 @@ namespace DoctorAppointmentSystem.Core.Contexts
              .WithOne(d => d.Doctor)
              .HasForeignKey(d => d.DoctorId);
 
+            builder.Entity<ExtendedIdentityUser>()
+            .HasOne<Doctor>(d => d.Doctor)
+            .WithOne(u => u.AppUser)
+            .HasForeignKey<Doctor>(d => d.UserId);
+
             base.OnModelCreating(builder);
         }
         public DbSet<Doctor> Doctors { get; set; }

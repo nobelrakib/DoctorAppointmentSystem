@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
+using DoctorAppointmentSystem.Core.Entities;
 
 namespace DoctorAppointmentSystem.Web.Areas.Admin.Models
 {
@@ -15,6 +17,8 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Models
     {
         private IDoctorService _doctorService;
         private IApplicationBuilder _applicationBuilder;
+        private readonly UserManager<ExtendedIdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         public DoctorViewModel(IDoctorService doctorService)
         {
             _doctorService = doctorService;
@@ -22,6 +26,8 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Models
         public DoctorViewModel()
         {
             _doctorService = Startup.AutofacContainer.Resolve<IDoctorService>();
+            _userManager = Startup.AutofacContainer.Resolve<UserManager<ExtendedIdentityUser>>();
+            _roleManager = Startup.AutofacContainer.Resolve<RoleManager<IdentityRole>>();
         }
         public object GetDoctors(DataTablesAjaxRequestModel tableModel)
         {
@@ -54,8 +60,12 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Models
             };
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
+            var userId = _doctorService.GetDoctor(id).UserId;
+            var user =  await _userManager.FindByIdAsync(userId);
+            var roles = await  _userManager.GetRolesAsync(user);
+            await _userManager.RemoveFromRolesAsync(user, roles);
             _doctorService.DeleteDoctor(id);
         }
     }

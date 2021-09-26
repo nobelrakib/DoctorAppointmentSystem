@@ -1,7 +1,9 @@
 ﻿using Autofac;
+using DoctorAppointmentSystem.Core.Contexts;
 using DoctorAppointmentSystem.Core.Entities;
 using DoctorAppointmentSystem.Core.Service;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,19 +17,29 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public int DepartmentId { get; set; }
+        public string UserId { get; set; }
+
         public IFormFile file { get; set; }
         public string ImageName { get; set; }
         public IEnumerable<Department> Departments { get; set; }
+        public IEnumerable<ExtendedIdentityUser> AppUsers { get; set; }
+
         private IDoctorService _doctorService;
         private IDepartmentService _departmentService;
         private IServiceProvider _serviceProvider;
         private FileService _fileService;
+        private readonly UserManager<ExtendedIdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly DoctorAppointmentContext _db;
         public DoctorUpdateModel()
         {
 
             _doctorService = Startup.AutofacContainer.Resolve<IDoctorService>();
             _departmentService = Startup.AutofacContainer.Resolve<IDepartmentService>();
+            _userManager = Startup.AutofacContainer.Resolve<UserManager<ExtendedIdentityUser>>();
             _fileService = Startup.AutofacContainer.Resolve<FileService>();
+            _roleManager = Startup.AutofacContainer.Resolve<RoleManager<IdentityRole>>();
+            _db = Startup.AutofacContainer.Resolve<DoctorAppointmentContext>();
         }
         public DoctorUpdateModel(IDoctorService doctorService,IDepartmentService departmentService,FileService fileService)
         {
@@ -36,17 +48,24 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Models
             _fileService = fileService;
         }
 
-        public void AddDoctor()
+        public async Task AddDoctor()
         {
             try
             {
                 SaveFile();
+                var user =  await _userManager.FindByIdAsync(UserId);
+                var role = "Doctor";
+                if(user != null)
+                {
+                    var roleResult =await _userManager.AddToRoleAsync(user, role);
+                }
                 _doctorService.AddNewDoctor(new Doctor
                 {
                     Name = this.Name,
                     Description = this.Description,
                     DepartmentId = this.DepartmentId,
-                    ImageName = _fileService.FileName
+                    ImageName = _fileService.FileName,
+                    UserId=this.UserId
                     // ImageName=this.
                 });
                 Notification = new NotificationModel("Success !", "Doctor Added Successfully", NotificationModel.NotificationType.Success);
@@ -67,6 +86,7 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Models
                 ImageName = doctor.ImageName;
                 DepartmentId = doctor.DepartmentId;
                 this.Description = doctor.Description;
+                UserId = doctor.UserId;
             }
 
         }
@@ -82,6 +102,7 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Models
                     Name = Name,
                     DepartmentId=DepartmentId,
                     Description = Description,
+                    UserId=UserId,
                     ImageName=ImageName,
                 };
                 _doctorService.EditDoctor(doctor);
@@ -93,10 +114,11 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Models
             }
         }
         public void GetAllDepartment() =>Departments = _departmentService.GetDepartments();
+        public void GetAllUsers() => AppUsers = _userManager.Users.ToList();
         public void SaveFile()
         {
             _fileService.SaveFile(file);
-            ImageName = file.FileName;
+            ImageName = _fileService.FileName;
         }
     }
 }
