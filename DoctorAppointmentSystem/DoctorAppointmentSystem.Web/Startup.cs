@@ -23,6 +23,7 @@ using Autofac;
 using DoctorAppointmentSystem.Core;
 using Autofac.Extensions.DependencyInjection;
 using AspNetCoreHero.ToastNotification;
+using DoctorAppointmentSystem.Core.Entities;
 
 namespace DoctorAppointmentSystem.Web
 {
@@ -64,9 +65,19 @@ namespace DoctorAppointmentSystem.Web
             //services.AddDbContext<ApplicationDbContext>(options =>
             //   options.UseMySql(
             //       Configuration.GetConnectionString("DefaultConnection")));
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
 
-            services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
-               .AddDefaultUI()
+                options.LoginPath = "/Account/Login";
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.SlidingExpiration = true;
+            });
+
+            services.AddIdentity<ExtendedIdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+             //  .AddDefaultUI()
                .AddEntityFrameworkStores<DoctorAppointmentContext>()
                .AddDefaultTokenProviders();
 

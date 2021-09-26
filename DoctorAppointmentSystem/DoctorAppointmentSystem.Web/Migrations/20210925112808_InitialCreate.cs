@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DoctorAppointmentSystem.Migrations
+namespace DoctorAppointmentSystem.Web.Migrations
 {
     public partial class InitialCreate : Migration
     {

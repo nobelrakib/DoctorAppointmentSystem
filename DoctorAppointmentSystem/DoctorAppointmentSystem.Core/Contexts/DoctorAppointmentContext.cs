@@ -59,5 +59,7 @@ namespace DoctorAppointmentSystem.Core.Contexts
         public DbSet<Department> Departments { get; set; }
         public DbSet<Appointment> Appointment { get; set; }
         public DbSet<Drug> Drugs { get; set; }
+
+        public DbSet<ExtendedIdentityUser> AppUser { get; set; }
     }
 }

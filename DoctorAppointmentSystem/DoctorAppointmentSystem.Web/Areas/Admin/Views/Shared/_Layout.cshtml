@@ -1,6 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@using DoctorAppointmentSystem.Core.Entities
+@inject SignInManager<ExtendedIdentityUser> SignInManager
+@inject UserManager<ExtendedIdentityUser> UserManager
 @addTagHelper*,DoctorAppointmentSystem.Web
 
 <!DOCTYPE html>

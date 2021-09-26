@@ -1,0 +1,189 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <!-- Font Awesome -->
+    <link href="~/admin/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link href="~/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="~/admin/css/adminlte.min.css" rel="stylesheet" />
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    @RenderSection("styles", required: false)
+    <style>
+        html, body {
+            height: 100%;
+        }
+
+            body.my-login-page {
+                background-color: #f7f9fb;
+                font-size: 14px;
+            }
+
+        .my-login-page .brand {
+            width: 90px;
+            height: 90px;
+            overflow: hidden;
+            border-radius: 50%;
+            margin: 40px auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,.05);
+            position: relative;
+            z-index: 1;
+        }
+
+            .my-login-page .brand img {
+                width: 100%;
+            }
+
+        .my-login-page .card-wrapper {
+            width: 400px;
+        }
+
+        .my-login-page .card {
+            border-color: transparent;
+            box-shadow: 0 4px 8px rgba(0,0,0,.05);
+        }
+
+            .my-login-page .card.fat {
+                padding: 10px;
+            }
+
+            .my-login-page .card .card-title {
+                margin-bottom: 30px;
+            }
+
+        .my-login-page .form-control {
+            border-width: 2.3px;
+        }
+
+        .my-login-page .form-group label {
+            width: 100%;
+        }
+
+        .my-login-page .btn.btn-block {
+            padding: 12px 10px;
+        }
+
+        .my-login-page .footer {
+            margin: 40px 0;
+            color: #888;
+            text-align: center;
+        }
+        .login-box,
+        .register-box {
+            width: 360px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-dark text-white p-2">
+        <span class="navbar-brand ml-2"> Health Tracker </span>
+
+    </div>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <div class="row m-1 p-1">
+
+                <div class="col-12">
+                    @RenderBody()
+                </div>
+            </div>
+        </main>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="~/admin/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/admin/js/adminlte.min.js"></script>
+    <script>
+
+        'use strict';
+
+        $(function () {
+
+
+            $("input[type='password'][data-eye]").each(function (i) {
+                var $this = $(this),
+                    id = 'eye-password-' + i,
+                    el = $('#' + id);
+
+                $this.wrap($("<div/>", {
+                    style: 'position:relative',
+                    id: id
+                }));
+
+                $this.css({
+                    paddingRight: 60
+                });
+                $this.after($("<div/>", {
+                    html: 'Show',
+                    class: 'btn btn-primary btn-sm',
+                    id: 'passeye-toggle-' + i,
+                }).css({
+                    position: 'absolute',
+                    right: 10,
+                    top: ($this.outerHeight() / 2) - 12,
+                    padding: '2px 7px',
+                    fontSize: 12,
+                    cursor: 'pointer',
+                }));
+
+                $this.after($("<input/>", {
+                    type: 'hidden',
+                    id: 'passeye-' + i
+                }));
+
+                var invalid_feedback = $this.parent().parent().find('.invalid-feedback');
+
+                if (invalid_feedback.length) {
+                    $this.after(invalid_feedback.clone());
+                }
+
+                $this.on("keyup paste", function () {
+                    $("#passeye-" + i).val($(this).val());
+                });
+                $("#passeye-toggle-" + i).on("click", function () {
+                    if ($this.hasClass("show")) {
+                        $this.attr('type', 'password');
+                        $this.removeClass("show");
+                        $(this).removeClass("btn-outline-primary");
+                    } else {
+                        $this.attr('type', 'text');
+                        $this.val($("#passeye-" + i).val());
+                        $this.addClass("show");
+                        $(this).addClass("btn-outline-primary");
+                    }
+                });
+            });
+
+            $(".my-login-validation").submit(function () {
+                var form = $(this);
+                if (form[0].checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.addClass('was-validated');
+            });
+        });
+
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
