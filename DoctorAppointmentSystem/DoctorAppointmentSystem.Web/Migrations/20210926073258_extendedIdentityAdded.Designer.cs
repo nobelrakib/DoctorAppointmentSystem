@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DoctorAppointmentSystem.Web.Migrations
 {
     [DbContext(typeof(DoctorAppointmentContext))]
-    [Migration("20210925112808_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210926073258_extendedIdentityAdded")]
+    partial class extendedIdentityAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -187,6 +187,10 @@ namespace DoctorAppointmentSystem.Web.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
@@ -238,6 +242,8 @@ namespace DoctorAppointmentSystem.Web.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -318,6 +324,16 @@ namespace DoctorAppointmentSystem.Web.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("DoctorAppointmentSystem.Core.Entities.ExtendedIdentityUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("ExtendedIdentityUser");
                 });
 
             modelBuilder.Entity("DoctorAppointmentSystem.Core.Entities.Appointment", b =>

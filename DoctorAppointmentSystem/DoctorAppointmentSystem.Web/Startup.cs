@@ -24,6 +24,7 @@ using DoctorAppointmentSystem.Core;
 using Autofac.Extensions.DependencyInjection;
 using AspNetCoreHero.ToastNotification;
 using DoctorAppointmentSystem.Core.Entities;
+using DoctorAppointmentSystem.Web.Seeding;
 
 namespace DoctorAppointmentSystem.Web
 {
@@ -57,14 +58,7 @@ namespace DoctorAppointmentSystem.Web
                 options.UseSqlServer(Configuration.GetConnectionString(connectionStringName), b => b.MigrationsAssembly(migrationAssemblyName)));
 
             services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
-            //services.AddDbContext<DoctorAppointmentContext>(options =>
-            //   options.UseMySql(
-            //       Configuration.GetConnectionString("DefaultConnection")));
-
-
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //   options.UseMySql(
-            //       Configuration.GetConnectionString("DefaultConnection")));
+          
             services.ConfigureApplicationCookie(options =>
             {
                 // Cookie settings
@@ -93,11 +87,13 @@ namespace DoctorAppointmentSystem.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DoctorAppointmentContext context,
+            UserManager<ExtendedIdentityUser> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
             //container = app.ApplicationServices.CreateScope().ServiceProvider;
             AutofacContainer = app.ApplicationServices.GetAutofacRoot();
-
+            Seed.Initialize(context, userManager, roleManager).Wait();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
