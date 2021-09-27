@@ -8,5 +8,6 @@ namespace DoctorAppointmentSystem.Core.Repositories
 {
     public interface IDoctorRepository : IRepository<Doctor>
     {
+        Doctor GetDoctorByUserId(string id);
     }
 }

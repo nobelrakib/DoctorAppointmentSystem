@@ -29,7 +29,7 @@
                         "targets": 3,
                         "render": function (data, type, row) {
                             return `
-                                   <button type="submit" class="btn btn-info btn-sm edit" onclick="window.location.href='/admin/Appointment/Chamber'" data-id='${data}' value='${data}'>
+                                   <button type="submit" class="btn btn-info btn-sm edit" onclick="window.location.href='/admin/Appointment/Chamber/${data}'" data-id='${data}' value='${data}'>
                                             <i class="fas fa-pencil-alt">
                                                 </i>
                                             Chamber
@@ -101,7 +101,7 @@
             </div>
             <div class="modal-body">
                 <p>One fine body&hellip;</p>
-                <form id="deleteForm" action="~/Admin/Department/delete" method="post">
+                <form id="deleteForm" action="~/Admin/Appointment/delete" method="post">
                     @Html.AntiForgeryToken()
                     <input type="hidden" id="deleteId" value="" name="id" />
                 </form>

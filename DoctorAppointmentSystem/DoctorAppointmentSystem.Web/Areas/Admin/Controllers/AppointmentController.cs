@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace DoctorAppointmentSystem.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin,Doctor,Patient")]
+    
     public class AppointmentController : Controller
     {
         private readonly INotyfService _notyf;
@@ -21,11 +21,13 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Controllers
         {
             _notyf = notyf;
         }
+        [Authorize(Roles = "Admin,Doctor")]
         public IActionResult Index()
         {
             var model = new AppointmentViewModel();
             return View(model);
         }
+        [Authorize(Roles = "Admin,Doctor")]
         public IActionResult GetAppointments()
         {
             var tableModel = new DataTablesAjaxRequestModel(Request);
@@ -33,12 +35,16 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Controllers
             var data = model.GetAppointments(tableModel);
             return Json(data);
         }
-
-        public IActionResult Chamber()
+       [Authorize(Roles = "Admin,Doctor,Patient")]
+      // [AllowAnonymous]
+        public async Task< IActionResult >Chamber(int id)
         {
+            var model = new AppointmentViewModel();
+            await model.AssignPermisssion(id);
             return View();
         }
         [HttpPost]
+        [Authorize(Roles = "Admin,Doctor")]
         public JsonResult EmailSending(string url)
         {
             var model = new EmailSendingModel();
@@ -50,10 +56,11 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        [Authorize(Roles = "Admin,Doctor")]
+        public async Task< IActionResult> Delete(int id)
         {
             var model = new AppointmentViewModel();
-            model.Delete(id);
+            await model.Delete(id);
             return LocalRedirect("/Admin/Appointment/Index");
         }
     }

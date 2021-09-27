@@ -13,6 +13,7 @@ namespace DoctorAppointmentSystem.Core.Service
         void EditDoctor(Doctor doctor);
         void DeleteDoctor(int id);
         Doctor GetDoctor(int id);
+        Doctor GetDoctorByUserId(string id);
         IEnumerable<Doctor> GetDoctors(
             int pageIndex,
             int pageSize,

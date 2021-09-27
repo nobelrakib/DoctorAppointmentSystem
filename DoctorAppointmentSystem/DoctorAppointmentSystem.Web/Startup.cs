@@ -70,10 +70,12 @@ namespace DoctorAppointmentSystem.Web
                 options.SlidingExpiration = true;
             });
 
-            services.AddIdentity<ExtendedIdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
-             //  .AddDefaultUI()
-               .AddEntityFrameworkStores<DoctorAppointmentContext>()
-               .AddDefaultTokenProviders();
+            services.AddIdentity<ExtendedIdentityUser,IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+               //  .AddDefaultUI()
+               //.AddRoles<IdentityRole>()
+               .AddDefaultTokenProviders()
+               .AddEntityFrameworkStores<DoctorAppointmentContext>();
+               
 
             //services.AddScoped<DbContext, DoctorAppointmentContext>();
             //services.AddScoped<IDoctorService, DoctorService>();

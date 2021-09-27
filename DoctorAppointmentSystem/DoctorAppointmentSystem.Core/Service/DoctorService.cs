@@ -66,6 +66,10 @@ namespace DoctorAppointmentSystem.Core.Service
         {
             return _DoctorAppointmentUnitOfWork.DoctorRepository.GetById(id);
         }
+        public Doctor GetDoctorByUserId(string id)
+        {
+            return _DoctorAppointmentUnitOfWork.DoctorRepository.GetDoctorByUserId(id);
+        }
         public IEnumerable<Doctor> GetDoctors(
             int pageIndex,
             int pageSize,

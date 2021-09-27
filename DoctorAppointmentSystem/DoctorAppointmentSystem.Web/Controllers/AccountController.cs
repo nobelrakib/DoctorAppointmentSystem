@@ -38,6 +38,7 @@ namespace DoctorAppointmentSystem.Web.Controllers
             var model = new LoginModel();
 
             returnUrl = returnUrl ?? Url.Content("~/");
+            ViewBag.ReturnUrl = returnUrl;
 
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
@@ -49,7 +50,7 @@ namespace DoctorAppointmentSystem.Web.Controllers
             return View(model);
         }
         [HttpPost]
-        public async Task<IActionResult> Login(LoginModel model)
+        public async Task<IActionResult> Login(LoginModel model,string returnUrl)
         {
             model.ReturnUrl = model.ReturnUrl ?? Url.Content("~/admin");
             // var Identityuser =await _userManager.FindByEmailAsync(model.Email);
@@ -77,7 +78,7 @@ namespace DoctorAppointmentSystem.Web.Controllers
                     {
                         return LocalRedirect("/Admin/Appointment/index");
                     }
-                    else return LocalRedirect(model.ReturnUrl);
+                    else return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
                 {

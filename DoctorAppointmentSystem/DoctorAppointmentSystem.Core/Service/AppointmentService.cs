@@ -15,6 +15,7 @@ namespace DoctorAppointmentSystem.Core.Service
             _DoctorAppointmentUnitOfWork = DoctorAppointmentUnitOfWork;
         }
         public IEnumerable<Appointment> GetAppointments(
+           int doctorId,
            int pageIndex,
            int pageSize,
            string searchText,
@@ -24,7 +25,7 @@ namespace DoctorAppointmentSystem.Core.Service
             return _DoctorAppointmentUnitOfWork.AppointmentRepository.Get(
                 out total,
                 out totalFiltered,
-                x => x.Name.Contains(searchText),
+                x => x.Name.Contains(searchText) && x.DoctorId==doctorId,
                 x => x.OrderByDescending(b => b.Id),
                 "",
                 pageIndex,
@@ -44,6 +45,11 @@ namespace DoctorAppointmentSystem.Core.Service
             {
                 throw ex;
             }
+        }
+
+        public Appointment GetAppointment(int id)
+        {
+            return _DoctorAppointmentUnitOfWork.AppointmentRepository.GetById(id);
         }
     }
 }
