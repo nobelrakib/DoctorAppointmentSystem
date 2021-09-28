@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorAppointmentSystem.Dat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorAppointmentSystem.Core", "DoctorAppointmentSystem.Core\DoctorAppointmentSystem.Core.csproj", "{59B4C2CF-9A13-4B4A-B9CD-FF11D3A343A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorAppointmentSystem.Tests", "DoctorAppointmentSystem.Tests\DoctorAppointmentSystem.Tests.csproj", "{DDAD17BC-C991-48F3-B502-166570967E03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{59B4C2CF-9A13-4B4A-B9CD-FF11D3A343A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59B4C2CF-9A13-4B4A-B9CD-FF11D3A343A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59B4C2CF-9A13-4B4A-B9CD-FF11D3A343A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDAD17BC-C991-48F3-B502-166570967E03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDAD17BC-C991-48F3-B502-166570967E03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDAD17BC-C991-48F3-B502-166570967E03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDAD17BC-C991-48F3-B502-166570967E03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

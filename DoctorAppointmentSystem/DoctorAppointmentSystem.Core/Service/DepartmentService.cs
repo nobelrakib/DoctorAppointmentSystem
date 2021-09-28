@@ -37,9 +37,15 @@ namespace DoctorAppointmentSystem.Core.Service
             try
             {
                 var oldDepartment = _DoctorAppointmentUnitOfWork.DepartmentRepository.GetById(department.Id);
+                if(oldDepartment == null) throw new InvalidOperationException("department name is missing");
+
                 oldDepartment.Name = department.Name;
                 oldDepartment.Description = department.Description;
                 _DoctorAppointmentUnitOfWork.Save();
+            }
+            catch (InvalidOperationException e)
+            {
+                throw e;
             }
             catch (Exception ex)
             {
@@ -75,6 +81,16 @@ namespace DoctorAppointmentSystem.Core.Service
             out int total,
             out int totalFiltered)
         {
+            var department = _DoctorAppointmentUnitOfWork.DepartmentRepository.Get(
+                out total,
+                out totalFiltered,
+                x => x.Name.Contains(searchText),
+                x => x.OrderByDescending(b => b.Id),
+                "",
+                pageIndex,
+                pageSize,
+                true);
+
             return _DoctorAppointmentUnitOfWork.DepartmentRepository.Get(
                 out total,
                 out totalFiltered,

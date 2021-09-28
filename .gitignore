@@ -115,3 +115,5 @@ UpgradeLog*.XML
 
 /DoctorAppointmentSystem/.vs/DoctorAppointmentSystem/config/applicationhost.config
 /DoctorAppointmentSystem/.vs/DoctorAppointmentSystem/DesignTimeBuild/.dtbcache.v2
+/DoctorAppointmentSystem/.vs/DoctorAppointmentSystem/v16/TestStore/0/testlog.manifest
+/DoctorAppointmentSystem/.vs/DoctorAppointmentSystem/v16/TestStore/0/000.testlog
