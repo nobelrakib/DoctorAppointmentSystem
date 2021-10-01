@@ -36,12 +36,12 @@ namespace DoctorAppointmentSystem.Web.EmailService
                 mail.From.Add(new MailboxAddress(message.SenderName, message.Sender));
                 mail.To.Add(new MailboxAddress(string.Empty, message.Receiver));
                 mail.Subject = message.Subject;
-                mail.Body = new TextPart("plain")
+                mail.Body = new TextPart(MimeKit.Text.TextFormat.Html)
                 {
                     Text = message.Body
                 };
 
-                _client.Send(mail);
+              _client.Send(mail);
             
         }
     }
