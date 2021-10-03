@@ -14,6 +14,7 @@ namespace DoctorAppointmentSystem.Core.Entities
         public Department Department { get; set; }
         public int DepartmentId { get; set; }
         public string UserId { get; set; }
+        public string BucketUrl { get; set; }
         public ExtendedIdentityUser AppUser { get; set; }
         public IList<Appointment> Appointments { get; set; }
     }

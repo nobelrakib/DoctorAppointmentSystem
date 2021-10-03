@@ -25,6 +25,7 @@ using Autofac.Extensions.DependencyInjection;
 using AspNetCoreHero.ToastNotification;
 using DoctorAppointmentSystem.Core.Entities;
 using DoctorAppointmentSystem.Web.Seeding;
+using Amazon.S3;
 
 namespace DoctorAppointmentSystem.Web
 {
@@ -58,7 +59,7 @@ namespace DoctorAppointmentSystem.Web
                 options.UseSqlServer(Configuration.GetConnectionString(connectionStringName), b => b.MigrationsAssembly(migrationAssemblyName)));
 
             services.AddNotyf(config => { config.DurationInSeconds = 10; config.IsDismissable = true; config.Position = NotyfPosition.BottomRight; });
-          
+            services.AddAWSService<IAmazonS3>();
             services.ConfigureApplicationCookie(options =>
             {
                 // Cookie settings

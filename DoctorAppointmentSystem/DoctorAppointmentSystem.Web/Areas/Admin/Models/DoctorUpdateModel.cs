@@ -23,7 +23,7 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Models
         public string ImageName { get; set; }
         public IEnumerable<Department> Departments { get; set; }
         public IEnumerable<ExtendedIdentityUser> AppUsers { get; set; }
-
+        public  string BucketImageUrl = "https://doctorappointmentbucket.s3.ap-southeast-1.amazonaws.com/";
         private IDoctorService _doctorService;
         private IDepartmentService _departmentService;
         private IServiceProvider _serviceProvider;
@@ -31,6 +31,7 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Models
         private readonly UserManager<ExtendedIdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly DoctorAppointmentContext _db;
+        private readonly IAWSS3BucketHelper _s3BucketHelper;
         public DoctorUpdateModel()
         {
 
@@ -40,6 +41,8 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Models
             _fileService = Startup.AutofacContainer.Resolve<FileService>();
             _roleManager = Startup.AutofacContainer.Resolve<RoleManager<IdentityRole>>();
             _db = Startup.AutofacContainer.Resolve<DoctorAppointmentContext>();
+            _s3BucketHelper = Startup.AutofacContainer.Resolve<IAWSS3BucketHelper>();
+
         }
         public DoctorUpdateModel(IDoctorService doctorService,IDepartmentService departmentService,FileService fileService)
         {
@@ -66,8 +69,10 @@ namespace DoctorAppointmentSystem.Web.Areas.Admin.Models
                     DepartmentId = this.DepartmentId,
                     ImageName = _fileService.FileName,
                     UserId=this.UserId
+                   // BucketUrl= BucketImageUrl + _fileService.FileName
                     // ImageName=this.
                 });
+               // await _fileService.UploadFileS3Bucket(file);
                 Notification = new NotificationModel("Success !", "Doctor Added Successfully", NotificationModel.NotificationType.Success);
 
             }

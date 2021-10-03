@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Hosting;
@@ -12,9 +13,12 @@ namespace DoctorAppointmentSystem.Core.Service
     {
         private IWebHostEnvironment _env;
         public string FileName { get; set; }
-        public FileService(IWebHostEnvironment env)
+        private readonly IAWSS3BucketHelper _AWSS3BucketHelper;
+        public FileService(IWebHostEnvironment env, IAWSS3BucketHelper AWSS3BucketHelper)
         {
             _env = env;
+           _AWSS3BucketHelper = AWSS3BucketHelper;
+
         }
         public void SaveFile(IFormFile file)
         {
@@ -24,6 +28,23 @@ namespace DoctorAppointmentSystem.Core.Service
             using (var fileStream = new FileStream(save_path, FileMode.Create, FileAccess.Write))
             {
                 file.CopyTo(fileStream);
+            }
+        }
+
+        public async Task<bool> UploadFileS3Bucket(IFormFile uploadFileName)
+        {
+            try
+            {
+                var path = Path.Combine(_env.WebRootPath + "\\FrontEnd\\images", FileName);
+                using (FileStream fsSource = new FileStream(path, FileMode.Open, FileAccess.Read))
+                {
+
+                    return await _AWSS3BucketHelper.UploadFile(fsSource, FileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
         }
 
