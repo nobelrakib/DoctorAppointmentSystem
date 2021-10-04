@@ -36,7 +36,7 @@ namespace DoctorAppointmentSystem.Web.Controllers
 
         [Authorize]
         [HttpPost]
-        public IActionResult AppointmentAdd(AppointmentUpdateModel model)
+        public  IActionResult AppointmentAdd(AppointmentUpdateModel model)
         {
             try
             {

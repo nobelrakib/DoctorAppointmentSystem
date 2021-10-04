@@ -1,12 +1,13 @@
 ﻿using Autofac;
 using DoctorAppointmentSystem.Core.Contexts;
 using DoctorAppointmentSystem.Core.Entities;
+using DoctorAppointmentSystem.Core.Service;
 using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using DoctorAppointmentSystem.Core.Models;
 namespace DoctorAppointmentSystem.Web.Models
 {
     public class AppointmentUpdateModel
@@ -21,22 +22,33 @@ namespace DoctorAppointmentSystem.Web.Models
         public Gender Gender { get; set; }
         public DateTime Date { get; set; }
         public DoctorAppointmentContext context;
+        public IDynamodbAppointmentService dynamodbAppointmentService;
+
         public AppointmentUpdateModel()
         {
             context= Startup.AutofacContainer.Resolve<DoctorAppointmentContext>();
+            dynamodbAppointmentService = Startup.AutofacContainer.Resolve<IDynamodbAppointmentService>();
+
         }
         public void Add()
         {
             context.Appointment.Add(new Appointment()
             {
-                Name=Name,
-                Email=Email,
-                PhoneNumber=PhoneNumber,
-                Symptoms=Symptoms,
-                DoctorId=DoctorId,
-                Gender=Gender,
-                Date=Date
+                Name = Name,
+                Email = Email,
+                PhoneNumber = PhoneNumber,
+                Symptoms = Symptoms,
+                DoctorId = DoctorId,
+                Gender = Gender,
+                Date = Date
             });
+            //await dynamodbAppointmentService.Add(new DynamodbAppointmentModel
+            //{
+            //    AppointmentDate = Date,
+            //    EmailAddress = Email,
+            //    Id = Guid.NewGuid()
+            //});
+
             context.SaveChanges();
         }
         public void InitiateDoctor()
