@@ -55,10 +55,10 @@ namespace DoctorAppointmentSystem.Core.Service
         }
 
         public async Task Remove(Guid id)
-         {
+        {
             //await _context.DeleteAsync<DynamodbAppointmentModel>(id);
 
-         }
+        }
 
        
 

@@ -7,8 +7,9 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="5.2.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
-    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.0.76" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.0.73" />
     <PackageReference Include="AWSSDK.S3" Version="3.7.3.7" />
+    <PackageReference Include="AWSSDK.SQS" Version="3.7.2.24" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.5" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.5">

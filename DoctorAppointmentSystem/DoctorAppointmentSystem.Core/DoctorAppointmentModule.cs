@@ -65,6 +65,9 @@ namespace DoctorAppointmentSystem.Core
             builder.RegisterType<AWSS3BucketHelper>().As<IAWSS3BucketHelper>()
                .InstancePerLifetimeScope();
 
+            builder.RegisterType<AWSSQSHelper>().As<IAWSSQSHelper>()
+               .InstancePerLifetimeScope();
+
             builder.RegisterType<DynamodbAppointmentService>().As<IDynamodbAppointmentService>()
                .InstancePerLifetimeScope();
 

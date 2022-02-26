@@ -23,7 +23,6 @@ namespace DoctorAppointmentSystem.Web.Models
         public DateTime Date { get; set; }
         public DoctorAppointmentContext context;
         public IDynamodbAppointmentService dynamodbAppointmentService;
-
         public AppointmentUpdateModel()
         {
             context= Startup.AutofacContainer.Resolve<DoctorAppointmentContext>();
